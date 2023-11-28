@@ -54,7 +54,8 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PatientDetailScreen(
-    viewModel: PatientDetailsViewModel
+    viewModel: PatientDetailsViewModel,
+    onBackClicked: () -> Unit
 ) {
 
     val state = viewModel.state
@@ -69,7 +70,7 @@ fun PatientDetailScreen(
 
     Scaffold(
         topBar = {
-            TopBar(onBackClicked = {})
+            TopBar(onBackClicked = {onBackClicked()})
         }
     )
     {

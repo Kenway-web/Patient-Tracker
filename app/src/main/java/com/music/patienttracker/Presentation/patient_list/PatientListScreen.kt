@@ -13,7 +13,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,8 +22,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -36,7 +33,10 @@ import com.music.patienttracker.domain.model.Patient
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PatientListScreen() {
+fun PatientListScreen(
+    onFabClicked:()->Unit,
+    onItemClicked:(Int?)->Unit
+) {
 
     val patientList = listOf(
         Patient(
@@ -56,7 +56,7 @@ fun PatientListScreen() {
     val scrollState = rememberScrollState()
 
     Scaffold(
-        topBar = { ListAppBar() }, floatingActionButton = { ListFAB() }) {padding ->
+        topBar = { ListAppBar() }, floatingActionButton = { ListFAB(onFabClicked) }) { padding ->
         LazyColumn(
             contentPadding = PaddingValues(16.dp),
             modifier = Modifier.padding(padding),
@@ -65,7 +65,7 @@ fun PatientListScreen() {
             items(patientList) { patient ->
                 PatientItem(
                     patient = patient,
-                    onItemClicked = {},
+                    onItemClicked = {onItemClicked(patient.patientId)},
                     onDeleteConfirm = {}
                 )
             }
@@ -85,7 +85,6 @@ fun PatientListScreen() {
 
             }
         }
-
     }
 }
 
@@ -109,8 +108,8 @@ fun ListAppBar()
 
 
 @Composable
-fun ListFAB() {
-    FloatingActionButton(onClick = { /*TODO*/ }) {
+fun ListFAB(onFabClicked: () -> Unit) {
+    FloatingActionButton(onClick = { onFabClicked() }) {
         Image(
             imageVector = Icons.Filled.Add,
             contentDescription = "Add Patient Butoon"
