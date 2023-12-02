@@ -46,6 +46,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.music.patienttracker.Presentation.theme.Pink80
 import com.music.patienttracker.R
 import kotlinx.coroutines.delay
@@ -54,7 +55,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PatientDetailScreen(
-    viewModel: PatientDetailsViewModel,
+    viewModel: PatientDetailsViewModel = hiltViewModel(),
     onBackClicked: () -> Unit
 ) {
 

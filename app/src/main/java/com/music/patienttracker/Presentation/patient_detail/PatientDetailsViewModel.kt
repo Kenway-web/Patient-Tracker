@@ -4,10 +4,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.music.patienttracker.domain.repository.PatientRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class PatientDetailsViewModel : ViewModel() {
 
-    var state by mutableStateOf(PatientDetailUiState())
+@HiltViewModel
+class PatientDetailsViewModel @Inject constructor(private val repository: PatientRepository) : ViewModel() {
+
+//    "val state by mutableStateOf (PatientUiDetailsState()" this way
+//    instead of " private val _state = MutableStateFlow (PatientUiDetailsState()) val state = _state.asStateFlow"
+//
+internal var state by mutableStateOf(PatientDetailUiState())
 
     fun onEvent(event: PatientDetailEvents) {
         when (event) {

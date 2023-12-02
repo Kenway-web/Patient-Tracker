@@ -26,6 +26,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.music.patienttracker.Presentation.theme.Pink80
 import com.music.patienttracker.R
 import com.music.patienttracker.domain.model.Patient
@@ -34,8 +35,10 @@ import com.music.patienttracker.domain.model.Patient
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PatientListScreen(
+
     onFabClicked:()->Unit,
-    onItemClicked:(Int?)->Unit
+    onItemClicked:(Int?)->Unit,
+    viewModel: PatientListViewModel = hiltViewModel()
 ) {
 
     val patientList = listOf(

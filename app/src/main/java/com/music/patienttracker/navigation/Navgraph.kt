@@ -53,9 +53,9 @@ fun NavGraphSetup(
                 defaultValue = -1
             })
         ) {
-            val viewModel= viewModel<PatientDetailsViewModel>()
+
             PatientDetailScreen(
-                viewModel = viewModel,
+
                 onBackClicked = {navController.navigateUp()}
             )
         }

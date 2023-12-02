@@ -11,7 +11,9 @@ import com.music.patienttracker.Presentation.patient_detail.PatientDetailsViewMo
 import com.music.patienttracker.Presentation.patient_list.PatientListScreen
 import com.music.patienttracker.Presentation.theme.PatientTrackerTheme
 import com.music.patienttracker.navigation.NavGraphSetup
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
